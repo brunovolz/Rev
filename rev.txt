@@ -1,0 +1,48 @@
+-  Overview em 
+	.NetCore (Criando WebApi) - FUTURO
+	JIRA
+
+
+SPOILERS TCC
+
+-- Verificar os 2 tipos de placas
+-- Verificar se é PCD 
+
+
+Classes -> 
+UserControl/
+Usuario : UserControls/
+ContextDB : DbContext/ se preciso : Single<ContextDB>/
+CustomNameValidator : ValidationAttribute/
+CustomExistLogin : ValidationAttribute/
+
+Utils ->
+Single<T> : DbContext,IDisposable/ (explicit pattern)
+	
+			(Não esquecer heranças)
+
+[Key] (Anotações)-> Em cima do public 
+Instalar pacote DbContext no ContextDB.cs
+*Não esquecer Rebuild
+
+Validações da Usuario.cs
+
+Nome - [CustomNameValidator]
+
+Senha - [(Range para inteiros ou MaxLegth e MinLegth para string)(8,16,ErrorMessage="")]
+	(Min e Max de caracteres aceitos no campo)
+Email - [RegularExpression(pattern: @"^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$", ErrorMessage ="E-mail inválido.")]	
+	
+
+	Max legth e minlegth requer migration
+enable-migrations
+add-migration
+update-database
+
+Controllers -> Excluir Values/ Add Controller WebApi2 Entity Framework/
+Marcar box Async/
+
+====== PostMan ======
+		-> Get - Show DB
+		-> Post - Adicionar no DB /Body - x-www-form...
+		-> Put - Editar
