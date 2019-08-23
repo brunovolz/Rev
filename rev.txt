@@ -12,12 +12,9 @@ SPOILERS TCC
 Classes -> 
 UserControl/
 Usuario : UserControls/
-ContextDB : DbContext/ se preciso : Single<ContextDB>/
+ContextDB : DbContext/
 CustomNameValidator : ValidationAttribute/
 CustomExistLogin : ValidationAttribute/
-
-Utils ->
-Single<T> : DbContext,IDisposable/ (explicit pattern)
 	
 			(Não esquecer heranças)
 

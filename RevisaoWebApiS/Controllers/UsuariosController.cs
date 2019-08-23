@@ -15,19 +15,19 @@ namespace RevisaoWebApiS.Controllers
 {
     public class UsuariosController : ApiController
     {
-        //excluido private... e trocado todos db. por ContextDB.GetInstance()
+        private ContextDB db = new ContextDB();
 
         // GET: api/Usuarios
         public IQueryable<Usuario> Getusuarios()
         {
-            return ContextDB.GetInstance().usuarios;
+            return db.usuarios;
         }
 
         // GET: api/Usuarios/5
         [ResponseType(typeof(Usuario))]
         public async Task<IHttpActionResult> GetUsuario(int id)
         {
-            Usuario usuario = await ContextDB.GetInstance().usuarios.FindAsync(id);
+            Usuario usuario = await db.usuarios.FindAsync(id);
             if (usuario == null)
             {
                 return NotFound();
@@ -50,11 +50,11 @@ namespace RevisaoWebApiS.Controllers
                 return BadRequest();
             }
 
-            ContextDB.GetInstance().Entry(usuario).State = EntityState.Modified;
+            db.Entry(usuario).State = EntityState.Modified;
 
             try
             {
-                await ContextDB.GetInstance().SaveChangesAsync();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -80,8 +80,8 @@ namespace RevisaoWebApiS.Controllers
                 return BadRequest(ModelState);
             }
 
-            ContextDB.GetInstance().usuarios.Add(usuario);
-            await ContextDB.GetInstance().SaveChangesAsync();
+            db.usuarios.Add(usuario);
+            await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = usuario.Id }, usuario);
         }
@@ -90,14 +90,14 @@ namespace RevisaoWebApiS.Controllers
         [ResponseType(typeof(Usuario))]
         public async Task<IHttpActionResult> DeleteUsuario(int id)
         {
-            Usuario usuario = await ContextDB.GetInstance().usuarios.FindAsync(id);
+            Usuario usuario = await db.usuarios.FindAsync(id);
             if (usuario == null)
             {
                 return NotFound();
             }
 
-            ContextDB.GetInstance().usuarios.Remove(usuario);
-            await ContextDB.GetInstance().SaveChangesAsync();
+            db.usuarios.Remove(usuario);
+            await db.SaveChangesAsync();
 
             return Ok(usuario);
         }
@@ -106,14 +106,14 @@ namespace RevisaoWebApiS.Controllers
         {
             if (disposing)
             {
-                ContextDB.GetInstance().Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool UsuarioExists(int id)
         {
-            return ContextDB.GetInstance().usuarios.Count(e => e.Id == id) > 0;
+            return db.usuarios.Count(e => e.Id == id) > 0;
         }
     }
 }
