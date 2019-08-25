@@ -1,0 +1,49 @@
+Descrição de implementação de uma api para clientes
+
+Ao verificar as características do sistema identificamos que 
+deveremos criar uma api de comunicação para estas informações
+
+
+
+E01 . Devemos criar o modelo seguindo as especificações de campos que 
+será listado nas próximas linhas, assim como todos os campos de controle 
+de informações importantes para persistência de registros dontres da tabela.
+
+Campos: 
+		Id
+		Nome completo
+		Estado Civil
+		RG
+		CPF / CNPJ
+		Nome Fantasia 
+		Cep
+		Endereço
+		Cidade
+		Estado
+		Telefone
+		Celular
+		Email
+	
+E02. O campo estado civil deve conter uma coleção enumerada das possibilidades para este campo
+como descrito:
+
+Solteiro
+Casado
+Viúvo
+Divorciado
+
+
+E03. Devemos Identificar o campo CPF CNPJ para identificar quando devemos tornar obrigatório o campo
+nome fantasia, o mesmo pode ser validado fora do contexto da model esta informações.
+
+
+E04. Os campos devem seguir uma formatação de acordo com os padrões de mercado esperado para suas respectivas 
+validações, a seguir os campos que devem ser validados em suas respectivas formatações:
+		RG
+		CPF / CNPJ
+		Cep
+		Telefone
+		Celular
+		Email
+		
+E05. O mesmo ao validar um novo registro deve verificar se já existe um cliente cadastrado para o CPF ou CNPJ informado.
