@@ -8,5 +8,6 @@ namespace ExercicioFinal2.Models
 {
     public class ContextDB : DbContext
     {
+        public DbSet<Usuario> usuarios { get; set; }
     }
 }
